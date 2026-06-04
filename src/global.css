@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color palette. */
+    --background-color: #080f18;
+    --surface-background-1: #0f1b26; /* sidebar, top navigation bar, main panels */
+    --surface-background-2: #132433; /* cards, modals, dropdowns, content blocks */
+    --surface-background-3: #172c3d; /* floating UI */
+    --default-border-color: #1c3242;
+    --strong-border-color: #274a5f; /* active panels and selected items */
+
+    --accent: #0dcaf0; /* primary buttons, links, highlights, toggles, progress bars */
+    --accent-hover: #2dd6f5; /* Hover background for --accent backgrounds. */
+    --accent-active: #0aa2c0; /* Selected active items. */
+    --accent-soft: rgba(13, 202, 240, 0.12); /* Hover backgrounds, badges. */
+
+    --text-primary: #e6f1f7; /* Headings, main content. */
+    --text-secondary: #a9c0cf; /* Descriptions, labels, metadata. */
+    --text-muted: #6f8fa3; /* Placeholders, disabled text, hints. */
+    --text-inverted: #06202a; /* On --accent backgrounds. */
+
+    --success: #2ecc71;
+    --warning: #f1c40f;
+    --danger: #e74c3c;
+    --info: #0dcaf0;
+}
