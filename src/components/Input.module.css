@@ -1,5 +1,6 @@
 input {
     width: 100%;
+    max-width: 320px;
     height: 2.25rem;
     background-color: var(--surface-background-1);
     padding: 0 1rem;
