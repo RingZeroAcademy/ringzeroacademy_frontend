@@ -1,3 +1,7 @@
+import Header from "./components/Header";
+
 export default function Tutorials() {
-    return <label>This is the tutorials page.</label>
+    return <>
+        <Header/>
+    </>
 }
