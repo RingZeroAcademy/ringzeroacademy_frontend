@@ -28,3 +28,47 @@
     --danger: #e74c3c;
     --info: #0dcaf0;
 }
+
+body {
+    background-color: var(--background-color);
+    font-size: 1rem;
+    --secondary-text-font-size: 0.875rem;
+}
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.375rem; }
+h3 { font-size: 1.125rem; }
+h4 { font-size: 1rem; }
+button {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/*
+Phones up to 768px
+Tablets up to 1024px
+Laptops and desktops higher than 1025px
+*/
+@media (min-width: 769px) {
+    body {
+        font-size: 1.0625rem;
+        --secondary-text-font-size: 0.9375rem;
+    }
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.375rem; }
+    h4 { font-size: 1.125rem; }
+    button { font-size: 0.9375rem; }
+}
+
+@media (min-width: 1025px) {
+    body {
+        font-size: 1.125rem;
+        --secondary-text-font-size: 1rem;
+    }
+    h1 { font-size: 2.75rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.125rem; }
+    button { font-size: 1rem; }
+}
