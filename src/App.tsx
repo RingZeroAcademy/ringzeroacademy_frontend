@@ -4,7 +4,7 @@ import Tutorials from "./pages/Tutorials/Tutorials";
 export default function App() {
     return <BrowserRouter>
         <Routes>
-            <Route path="/tutorials" element={<Tutorials/>} />
+            <Route path="/tutorials/*" element={<Tutorials/>} />
         </Routes>
     </BrowserRouter>
 }
