@@ -116,7 +116,7 @@ const distDirectory = process.argv[3] || './dist';
 
 const sourceDirectory = join(__dirname, "tutorials");
 const distDirectory = join(__dirname, "../dist");
-const tutorialsDirectory = join(distDirectory, "tutorials");
+const tutorialsDirectory = join(distDirectory, "content" , "tutorials");
 
 // Prepare the destination directory.
 if (existsSync(distDirectory)) rmSync(distDirectory, { recursive: true, force: true });
