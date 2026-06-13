@@ -1,0 +1,547 @@
+.tutorialContent {
+    margin-top: 90px;
+}
+
+/* tutorial-styles.css - Complete styling for Markdown-generated HTML */
+
+/* ============================================
+   BASE CONTAINER & TYPOGRAPHY
+   ============================================ */
+.tutorialContent {
+  max-width: 900px;
+  margin: 90px auto;
+  padding: 2rem 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1a202c;
+  background-color: #ffffff;
+}
+
+/* ============================================
+   HEADINGS (h1 - h6)
+   ============================================ */
+.tutorialContent h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #e2e8f0;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.tutorialContent h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 1.8rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid #e2e8f0;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.tutorialContent h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.tutorialContent h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.tutorialContent h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.tutorialContent h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+/* ============================================
+   PARAGRAPHS & TEXT
+   ============================================ */
+.tutorialContent p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+  color: #334155;
+}
+
+.tutorialContent strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.tutorialContent em {
+  font-style: italic;
+  color: #475569;
+}
+
+.tutorialContent del {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* ============================================
+   LINKS
+   ============================================ */
+.tutorialContent a {
+  color: #3b82f6;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tutorialContent a:hover {
+  color: #2563eb;
+  border-bottom-color: #3b82f6;
+}
+
+.tutorialContent a:visited {
+  color: #8b5cf6;
+}
+
+/* ============================================
+   LISTS (ul, ol, li)
+   ============================================ */
+.tutorialContent ul,
+.tutorialContent ol {
+  margin: 1rem 0 1.25rem 1.5rem;
+  padding-left: 0.5rem;
+}
+
+.tutorialContent li {
+  margin: 0.5rem 0;
+  line-height: 1.7;
+  color: #334155;
+}
+
+.tutorialContent li > ul,
+.tutorialContent li > ol {
+  margin: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.tutorialContent ul {
+  list-style-type: disc;
+}
+
+.tutorialContent ul ul {
+  list-style-type: circle;
+}
+
+.tutorialContent ul ul ul {
+  list-style-type: square;
+}
+
+.tutorialContent ol {
+  list-style-type: decimal;
+}
+
+.tutorialContent ol ol {
+  list-style-type: lower-alpha;
+}
+
+.tutorialContent ol ol ol {
+  list-style-type: lower-roman;
+}
+
+/* ============================================
+   CODE & PRE (Code Blocks)
+   ============================================ */
+/* Inline code */
+.tutorialContent code:not(pre code) {
+  background-color: #f1f5f9;
+  color: #db2777;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875em;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Code blocks */
+.tutorialContent pre {
+  background-color: #0f172a;
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  line-height: 1.5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tutorialContent pre code {
+  background-color: transparent;
+  color: #e2e8f0;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
+  padding: 0;
+  white-space: pre;
+  word-break: normal;
+  word-wrap: normal;
+}
+
+/* ============================================
+   BLOCKQUOTES
+   ============================================ */
+.tutorialContent blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 0 0.75rem 1.25rem;
+  border-left: 4px solid #3b82f6;
+  background-color: #f8fafc;
+  color: #475569;
+  font-style: italic;
+}
+
+.tutorialContent blockquote p {
+  margin-bottom: 0.5rem;
+}
+
+.tutorialContent blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.tutorialContent blockquote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #64748b;
+  font-style: normal;
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+.tutorialContent table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  display: block;
+}
+
+.tutorialContent thead {
+  background-color: #f1f5f9;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+.tutorialContent th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+.tutorialContent td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+.tutorialContent tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.tutorialContent tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* ============================================
+   HORIZONTAL RULES
+   ============================================ */
+.tutorialContent hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+  margin: 2rem 0;
+}
+
+/* ============================================
+   IMAGES
+   ============================================ */
+.tutorialContent img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  display: block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tutorialContent img[align="left"] {
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tutorialContent img[align="right"] {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ============================================
+   TASK LISTS (Checkboxes)
+   ============================================ */
+.tutorialContent input[type="checkbox"] {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.tutorialContent input[type="checkbox"]:disabled {
+  cursor: default;
+}
+
+.tutorialContent li:has(input[type="checkbox"]) {
+  list-style-type: none;
+}
+
+/* ============================================
+   FOOTNOTES
+   ============================================ */
+.tutorialContent .footnote {
+  font-size: 0.875rem;
+  color: #64748b;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.tutorialContent .footnote-ref {
+  font-size: 0.75rem;
+  vertical-align: super;
+}
+
+/* ============================================
+   DEFINITION LISTS
+   ============================================ */
+.tutorialContent dl {
+  margin: 1rem 0;
+}
+
+.tutorialContent dt {
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 0.5rem;
+}
+
+.tutorialContent dd {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #475569;
+}
+
+/* ============================================
+   ABBREVIATIONS
+   ============================================ */
+.tutorialContent abbr {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* ============================================
+   SUBSCRIPT & SUPERSCRIPT
+   ============================================ */
+.tutorialContent sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+.tutorialContent sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+/* ============================================
+   DETAILS & SUMMARY (Collapsible sections)
+   ============================================ */
+.tutorialContent details {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.tutorialContent summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: #3b82f6;
+  margin-bottom: 0.5rem;
+}
+
+.tutorialContent summary:hover {
+  color: #2563eb;
+}
+
+.tutorialContent details[open] summary {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* ============================================
+   ADMONITIONS / ALERT BOXES (Common in docs)
+   ============================================ */
+.tutorialContent .note,
+.tutorialContent .warning,
+.tutorialContent .tip,
+.tutorialContent .important,
+.tutorialContent .caution {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid;
+  border-radius: 6px;
+  background-color: #f8fafc;
+}
+
+.tutorialContent .note {
+  border-left-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.tutorialContent .warning {
+  border-left-color: #f59e0b;
+  background-color: #fffbeb;
+}
+
+.tutorialContent .tip {
+  border-left-color: #10b981;
+  background-color: #f0fdf4;
+}
+
+.tutorialContent .important {
+  border-left-color: #8b5cf6;
+  background-color: #f5f3ff;
+}
+
+.tutorialContent .caution {
+  border-left-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+  .tutorialContent {
+    padding: 1rem;
+    font-size: 14px;
+  }
+  
+  .tutorialContent h1 {
+    font-size: 2rem;
+  }
+  
+  .tutorialContent h2 {
+    font-size: 1.5rem;
+  }
+  
+  .tutorialContent h3 {
+    font-size: 1.25rem;
+  }
+  
+  .tutorialContent pre {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .tutorialContent table {
+    font-size: 0.875rem;
+  }
+  
+  .tutorialContent th,
+  .tutorialContent td {
+    padding: 0.5rem;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  .tutorialContent {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    max-width: 100%;
+  }
+  
+  .tutorialContent a {
+    color: #000;
+    text-decoration: underline;
+  }
+  
+  .tutorialContent pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+  
+  .tutorialContent h1,
+  .tutorialContent h2,
+  .tutorialContent h3 {
+    page-break-after: avoid;
+  }
+  
+  .tutorialContent img {
+    max-width: 100% !important;
+  }
+}
+
+/* ============================================
+   SCROLLBAR STYLING (Optional)
+   ============================================ */
+.tutorialContent pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tutorialContent pre::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+.tutorialContent pre::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+.tutorialContent pre::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ============================================
+   SELECTION STYLES
+   ============================================ */
+.tutorialContent ::selection {
+  background-color: #93c5fd;
+  color: #0f172a;
+}
+
+.tutorialContent ::-moz-selection {
+  background-color: #93c5fd;
+  color: #0f172a;
+}

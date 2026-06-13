@@ -1,5 +1,5 @@
-import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import styles from "./TutorialContent.module.css";
 
 export default function TutorialContent() {
     const [tutorialContent, setTutorialContent] = useState(null);
@@ -11,5 +11,5 @@ export default function TutorialContent() {
         });
     }, []);
 
-    return <div dangerouslySetInnerHTML={{ __html: tutorialContent }} />;
+    return <div className={styles.tutorialContent} dangerouslySetInnerHTML={{ __html: tutorialContent }} />;
 }
