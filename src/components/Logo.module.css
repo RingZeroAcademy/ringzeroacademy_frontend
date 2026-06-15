@@ -16,5 +16,5 @@
 
 .logoText {
     display: inline;
-    color: var(--text-primary);
+    color: var(--accent);
 }
