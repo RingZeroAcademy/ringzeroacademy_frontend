@@ -115,11 +115,11 @@ const distDirectory = process.argv[3] || './dist';
 */
 
 const sourceDirectory = join(__dirname, "tutorials");
-const distDirectory = join(__dirname, "../dist");
-const tutorialsDirectory = join(distDirectory, "content" , "tutorials");
+const publicDirectory = join(__dirname, "../public");
+const tutorialsDirectory = join(publicDirectory, "content" , "tutorials");
 
 // Prepare the destination directory.
-if (existsSync(distDirectory)) rmSync(distDirectory, { recursive: true, force: true });
+if (existsSync(tutorialsDirectory)) rmSync(tutorialsDirectory, { recursive: true, force: true });
 mkdirSync(tutorialsDirectory, { recursive: true });
 
 try {
