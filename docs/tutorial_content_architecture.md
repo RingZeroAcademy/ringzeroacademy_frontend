@@ -1,196 +1,338 @@
 # Tutorial Content Architecture
 
-## Overview
+Tutorial content will be maintained in a separate Git repository called `tutorials`. Tutorials are written in Markdown and organized into directories based on topic.
 
-RingZeroAcademy will use a build-time content generation approach.
-
-Tutorials will be authored and stored in a separate GitHub repository. During the website build process, tutorial source files will be converted into static HTML files and included in the website deployment.
-
-The frontend application will load these generated HTML files and display them within the tutorial page.
-
----
-
-## URL Structure
-
-Tutorial URLs follow the pattern:
+Example:
 
 ```text
-/tutorials/<tutorial-path>
+assembly/
+    instructions/
+        mov.md
+        ret.md
+
+c/
+    variables.md
 ```
 
-Examples:
+Example contents of `mov.md`:
 
-```text
-/tutorials/assembly_instructions/mov
-/tutorials/c/variables
-/tutorials/javascript/functions
+```markdown
+# Mov
+
+The `mov` assembly instruction ...
 ```
-
-The portion of the URL after `/tutorials/` is treated as the tutorial path.
-
-For example:
-
-```text
-/tutorials/assembly_instructions/mov
-```
-
-maps to:
-
-```text
-assembly_instructions/mov
-```
-
-The frontend uses this path to locate and load the corresponding generated HTML file.
 
 ---
 
 ## Build Process
 
-### Source Repository
-
-Tutorial content is maintained in a dedicated GitHub repository.
-
-Example structure:
-
-```text
-tutorials/
-├── assembly_instructions/
-│   ├── mov.md
-│   └── add.md
-├── c/
-│   ├── variables.md
-│   └── loops.md
-```
-
-### Generation Step
-
-During the website build:
-
-1. The tutorial repository is downloaded or made available to the build environment.
-2. Each tutorial source file is converted into HTML.
-3. Generated HTML files are copied into the website's public assets directory.
-
-Example output:
-
-```text
-public/
-└── tutorial-content/
-    ├── assembly_instructions/
-    │   ├── mov.html
-    │   └── add.html
-    └── c/
-        ├── variables.html
-        └── loops.html
-```
-
-### Deployment
-
-The generated HTML files are deployed together with the website.
-
-Because they are static assets, they are served directly by Vercel's CDN.
-
----
-
-## Runtime Loading
-
-When a user visits a tutorial URL:
-
-```text
-/tutorials/assembly_instructions/mov
-```
-
-the application extracts:
-
-```text
-assembly_instructions/mov
-```
-
-and loads:
-
-```text
-/tutorial-content/assembly_instructions/mov.html
-```
-
-The returned HTML is then rendered inside the tutorial page.
-
----
-
-## Reasons for This Approach
-
-### Performance
-
-Tutorial content is served as static files from the CDN.
-
-No GitHub requests are required at runtime.
-
-No API calls are required.
-
-No backend services are required.
-
-This results in fast page loading and low operational complexity.
-
-### Simplicity
-
-The architecture consists of:
-
-* Tutorial repository
-* Build process
-* Static assets
-* React frontend
-
-No database, content API, or server-side infrastructure is required.
-
-### Reliability
-
-The website remains fully functional even if GitHub is temporarily unavailable, since tutorial content is included in the deployment.
-
-### Scalability
-
-Static HTML files can be efficiently cached and delivered by the CDN, allowing the platform to support a large number of tutorials with minimal infrastructure requirements.
-
-### Search Engine Optimization (SEO)
-
-Tutorial content exists as pre-generated HTML rather than raw Markdown.
-
-This improves crawlability and indexing compared to rendering Markdown in the browser after page load.
-
-The approach provides a strong foundation for search engine visibility and organic discovery of tutorial content.
-
----
-
-## Future Metadata Support
-
-A separate metadata file may be introduced in the future.
+During the frontend build process, the tutorials repository will be cloned into a temporary working directory. All Markdown files will then be converted to HTML.
 
 Example:
 
 ```text
-public/tutorial-index.json
+temp/
+    tutorials/
+        assembly/
+            instructions/
+                mov.html
+                ret.html
+
+        c/
+            variables.html
 ```
 
-Example structure:
+Example contents of `mov.html`:
 
-```json
-[
-  {
-    "path": "assembly_instructions/mov",
-    "title": "MOV Instruction",
-    "difficulty": "Beginner",
-    "category": "Assembly"
-  }
-]
+```html
+<h1>Mov</h1>
+
+<p>The mov assembly instruction ...</p>
 ```
 
-This metadata file can support features such as:
+At this stage, each file contains only the tutorial content. It does not contain the site layout, navigation, search functionality, or any other application features.
+
+---
+
+## Tutorial Page Layout
+
+The frontend application contains a React component that defines the layout shared by all tutorial pages.
+
+File:
+
+```text
+/src/tutorials/main.tsx
+```
+
+Example:
+
+```tsx
+function TutorialPage({ tutorialHtml }) {
+    return (
+        <>
+            <Header />
+
+            <Sidebar />
+
+            <main
+                dangerouslySetInnerHTML={{
+                    __html: tutorialHtml
+                }}
+            />
+
+            <SearchWidget />
+        </>
+    );
+}
+```
+
+This component defines the complete tutorial page structure:
+
+* Header
+* Sidebar
+* Search functionality
+* Login and signup controls
+* Other shared UI elements
+
+The only missing piece is the tutorial content itself.
+
+---
+
+## Combining the Tutorial with the Page Layout
+
+For every generated tutorial HTML file, the build process reads the file contents and passes them to the `TutorialPage` component.
+
+Example:
+
+```js
+const pageHtml = renderToString(
+    <TutorialPage
+        tutorialHtml={tutorialHtml}
+    />
+);
+```
+
+If `tutorialHtml` contains:
+
+```html
+<h1>Mov</h1>
+
+<p>The mov assembly instruction ...</p>
+```
+
+then React produces:
+
+```html
+<header>...</header>
+
+<aside>...</aside>
+
+<main>
+    <h1>Mov</h1>
+
+    <p>The mov assembly instruction ...</p>
+</main>
+
+<div class="search">
+    ...
+</div>
+```
+
+This output contains both:
+
+1. The tutorial content.
+2. The surrounding page functionality.
+
+At this point, however, the output is still only a fragment of HTML. It is not yet a complete HTML document.
+
+---
+
+## Wrapping the Content in an HTML Document
+
+A template file is used to provide the outer HTML structure.
+
+File:
+
+```text
+/src/tutorials/template.html
+```
+
+Example:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Site</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="root">{{CONTENT}}</div>
+
+    <script type="module" src="/src/tutorials/main.js"></script>
+</body>
+</html>
+```
+
+The placeholder:
+
+```text
+{{CONTENT}}
+```
+
+is replaced with the HTML generated by React.
+
+Example:
+
+```js
+const finalHtml =
+    templateHtml.replace(
+        "{{CONTENT}}",
+        pageHtml
+    );
+```
+
+The result is a complete HTML document:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Site</title>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<div id="root">
+
+<header>...</header>
+
+<aside>...</aside>
+
+<main>
+    <h1>Mov</h1>
+
+    <p>The mov assembly instruction ...</p>
+</main>
+
+<div class="search">
+    ...
+</div>
+
+</div>
+
+<script type="module" src="/src/tutorials/main.js"></script>
+
+</body>
+</html>
+```
+
+This file can be served directly by a web server without any additional processing.
+
+---
+
+## Output Structure
+
+The final HTML file is written to the build output directory while preserving the original directory structure of the tutorials repository.
+
+Example:
+
+```text
+dist/
+    tutorials/
+        assembly/
+            instructions/
+                mov.html
+                ret.html
+
+        c/
+            variables.html
+```
+
+For example:
+
+```text
+assembly/instructions/mov.md
+```
+
+becomes:
+
+```text
+dist/tutorials/assembly/instructions/mov.html
+```
+
+---
+
+## Hydration
+
+The generated HTML already contains the complete page content. The browser can display the page immediately after it is downloaded.
+
+After the page loads, React hydrates the existing HTML and attaches event handlers for interactive features.
+
+Example:
+
+```tsx
+hydrateRoot(
+    document.getElementById("root"),
+    <TutorialPage />
+);
+```
+
+Hydration enables features such as:
 
 * Search
-* Navigation
-* Categories
-* Tags
-* Difficulty levels
-* Reading time estimates
-* Related tutorials
+* Navigation menus
+* Login dialogs
+* Theme switching
+* Any other React-based functionality
 
-The tutorial HTML files and metadata will remain independent, allowing content delivery and metadata management to evolve separately.
+without requiring React to rebuild the page from scratch.
+
+---
+
+## Request Flow
+
+### Previous Approach
+
+```text
+Request page
+    ↓
+Load React application
+    ↓
+Fetch tutorial content
+    ↓
+Render tutorial
+```
+
+This requires an additional network request before the tutorial can be displayed.
+
+### Static Generation Approach
+
+```text
+Build time:
+    Tutorial HTML
+        +
+    React page layout
+        ↓
+    Complete HTML file
+
+Runtime:
+    Request page
+        ↓
+    Receive complete HTML document
+        ↓
+    Display tutorial immediately
+        ↓
+    React hydrates page
+```
+
+The browser receives the complete page, including the tutorial content, in a single request.
+
+Benefits:
+
+* No additional tutorial fetch request
+* Faster initial page load
+* Tutorial content is immediately available to users and search engines
+* Better SEO
 
 ---
