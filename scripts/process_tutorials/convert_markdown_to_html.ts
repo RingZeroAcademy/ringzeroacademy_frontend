@@ -1,3 +1,10 @@
+/*
+ * The `marked` library is chosen over `markdown-it` solely because of
+ * speed. `markdown-it` has many features, but I only need to convert
+ * markdown to HTML. Switch to `markdown-it` only if you need features
+ * that lack in `marked` and are available in `markdown-it` or if you
+ * need a level of CommonMark compliance that lacks in `marked`.
+ */
 import { marked } from "marked";
 import * as path from "path";
 import * as fs from "fs";
