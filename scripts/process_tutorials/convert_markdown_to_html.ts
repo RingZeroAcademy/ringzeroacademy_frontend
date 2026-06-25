@@ -62,13 +62,16 @@ async function convertToHtmlAndSave(file: string, sourceRoot: string, destRoot:s
     const markdownContent: string = fs.readFileSync(file, { encoding: "utf-8" });
     const htmlContent: string = marked.parse(markdownContent, { async: false });
     
-    const relativePath: string = path.relative(sourceRoot, file);
-    const destFile: string = path.join(destRoot, relativePath);
+    const fileDirname: string = path.dirname(file);
+    const relativePath: string = path.relative(sourceRoot, fileDirname);
+    const destDir: string = path.join(destRoot, relativePath);
 
-    const destDir: string = path.dirname(destFile);
     if (!fs.existsSync(destDir)) {
         fs.mkdirSync(destDir, { recursive: true });
     }
+
+    const filename: string = path.basename(file, ".md") + ".html";
+    const destFile: string = path.join(destDir, filename);
 
     fs.writeFileSync(destFile, htmlContent);
 }
