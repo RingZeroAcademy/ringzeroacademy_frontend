@@ -10,17 +10,16 @@ import * as path from "path";
 import * as fs from "fs";
 
 /**
- * Convert all markdown files in 'sourceDir' to HTML files and place them
- * in 'destDir' while maintaining the directory structure.
- * @param {string} sourceDir - The directory containing markdown files.
- * @param {string} destDir - Where HTML files will be placed.
+ * Convert all markdown files to HTML, and store the HTML files in the same
+ * path as the markdown files.
+ * @param {string} targetDir - The directory containing markdown files.
  */
-export default async function convertMarkdownToHtml(sourceDir: string, destDir: string): Promise<void> {
-    const markdownFiles: string[] = scanDir(sourceDir);
+export default async function convertMarkdownToHtml(targetDir: string): Promise<void> {
+    const markdownFiles: string[] = getMarkdownFiles(targetDir);
 
     const voidPromises: Promise<void>[] = [];
     for (const file of markdownFiles) {
-        const voidPromise: Promise<void> = convertToHtmlAndSave(file, sourceDir, destDir);
+        const voidPromise: Promise<void> = convertToHtmlAndSave(file);
         voidPromises.push(voidPromise);
     }
 
@@ -32,7 +31,7 @@ export default async function convertMarkdownToHtml(sourceDir: string, destDir: 
  * @param {string} targetDir - The directory to scan.
  * @returns {string[]} An array of all markdown files in 'targetDir'.
  */
-function scanDir(targetDir: string): string[] {
+function getMarkdownFiles(targetDir: string): string[] {
     let markdownFiles: string[] = [];
 
     const dirContents: string[] = fs.readdirSync(targetDir);
@@ -41,7 +40,7 @@ function scanDir(targetDir: string): string[] {
         const itemStats = fs.statSync(fullPath);
 
         if (itemStats.isDirectory()) {
-            const subDirFiles = scanDir(fullPath);
+            const subDirFiles = getMarkdownFiles(fullPath);
             markdownFiles = markdownFiles.concat(subDirFiles);
         } else if (itemStats.isFile() && fullPath.endsWith(".md")) {
             markdownFiles.push(fullPath)
@@ -52,26 +51,18 @@ function scanDir(targetDir: string): string[] {
 }
 
 /**
- * Convert the given markdown file to HTML and save it in 'destRoot' while
- * maintaining the directory structure.
+ * Convert the given markdown file to HTML and save the HTML file in the same
+ * directory as the markdown file, but with a '.html' extension instead of '.md'.
  * @param {string} file - Markdown file to convert to HTML.
- * @param {string} sourceRoot - The root source directory.
- * @param {string} destRoot - The root destination directory.
+ * @returns {Promise<void>} Returns a Promise object that resolves to void.
  */
-async function convertToHtmlAndSave(file: string, sourceRoot: string, destRoot:string): Promise<void> {
+async function convertToHtmlAndSave(file: string): Promise<void> {
     const markdownContent: string = fs.readFileSync(file, { encoding: "utf-8" });
     const htmlContent: string = marked.parse(markdownContent, { async: false });
     
-    const fileDirname: string = path.dirname(file);
-    const relativePath: string = path.relative(sourceRoot, fileDirname);
-    const destDir: string = path.join(destRoot, relativePath);
-
-    if (!fs.existsSync(destDir)) {
-        fs.mkdirSync(destDir, { recursive: true });
-    }
-
-    const filename: string = path.basename(file, ".md") + ".html";
-    const destFile: string = path.join(destDir, filename);
+    const htmlFilename: string = path.basename(file, ".md") + ".html";
+    const dirname: string = path.dirname(file);
+    const destFile: string = path.join(dirname, htmlFilename);
 
     fs.writeFileSync(destFile, htmlContent);
 }

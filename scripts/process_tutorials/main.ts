@@ -15,7 +15,7 @@ const tutorialContentDir: string = path.join(tempDir, "tutorials");
 execSync(`git clone --depth 1 --branch main --single-branch git@github.com:RingZeroAcademy/tutorials.git ${tutorialContentDir}`);
 
 // Save the html files in the same directory as the original markdown files.
-convertMarkdownToHtml(tutorialContentDir, tutorialContentDir);
+convertMarkdownToHtml(tutorialContentDir);
 
 
 
