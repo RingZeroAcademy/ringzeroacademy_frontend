@@ -10,8 +10,8 @@ import * as path from "path";
 import * as fs from "fs";
 
 /**
- * Convert all markdown files to HTML, and store the HTML files in the same
- * path as the markdown files.
+ * Convert all markdown files to HTML, store the HTML files in the same
+ * path as the markdown files, then delete all processed markdown files.
  * @param {string} targetDir - The directory containing markdown files.
  */
 export default async function convertMarkdownToHtml(targetDir: string): Promise<void> {
@@ -24,6 +24,15 @@ export default async function convertMarkdownToHtml(targetDir: string): Promise<
     }
 
     await Promise.all(voidPromises); // Wait for all asynchronous file operations to complete.
+
+    // Delete all processed markdown files.
+    const rmVoidPromises: Promise<void>[] = [];
+    for (const file of markdownFiles) {
+        const rmVoidPromise: Promise<void> = fs.rm(file, () => {});
+        rmVoidPromises.push(rmVoidPromise);
+    }
+
+    await Promise.all(rmVoidPromises);
 }
 
 /**
