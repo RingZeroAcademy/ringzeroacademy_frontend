@@ -1,4 +1,4 @@
-import "/src/global.css";
+import "../global.css";
 import Header from "./components/Header.tsx";
 import styles from "./TutorialPage.module.css";
 

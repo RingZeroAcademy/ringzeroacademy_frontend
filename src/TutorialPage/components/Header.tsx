@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
-import Logo from "/src/globalComponents/Logo";
-import Input from "/src/globalComponents/Input";
-import { PrimaryNormalLinkButton, SecondaryNormalLinkButton } from "/src/globalComponents/Buttons";
+import Logo from "../../globalComponents/Logo.tsx";
+import Input from "../../globalComponents/Input.tsx";
+import { PrimaryNormalLinkButton, SecondaryNormalLinkButton } from "../../globalComponents/Buttons.tsx";
 
 export default function Header() {
     return <header className={styles.header} >
