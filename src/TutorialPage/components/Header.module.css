@@ -1,0 +1,26 @@
+header {
+    background-color: var(--background-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 80px;
+    border-bottom: 1px solid var(--default-border-color);
+    padding: 0 1rem;
+
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.headerMid {
+    display: flex;
+    justify-content: center;
+}
+
+.headerRight {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
