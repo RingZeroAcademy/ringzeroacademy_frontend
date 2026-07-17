@@ -26,7 +26,7 @@ The `mov` assembly instruction ...
 
 ## Build Process
 
-During the frontend build process, the tutorials repository will be cloned into a temporary working directory. All Markdown files will then be converted to HTML.
+During the frontend build process, the tutorials repository will be cloned into a temporary working directory. All Markdown files will then be converted to HTML. All markdown files, that are converted to HTML, will then be deleted, leaving behind only the html files.
 
 Example:
 
@@ -61,7 +61,7 @@ The frontend application contains a React component that defines the layout shar
 File:
 
 ```text
-/src/tutorials/main.tsx
+/src/TutorialPage/main.tsx
 ```
 
 Example:
