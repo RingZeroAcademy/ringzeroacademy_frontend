@@ -4,6 +4,6 @@ import TutorialPage from "./TutorialPage.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <TutorialPage tutorialHTML="Hello World" />
+    <TutorialPage tutorialHTML="<label>Hello World</label>" />
   </StrictMode>,
 )
