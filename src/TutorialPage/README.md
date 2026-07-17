@@ -11,7 +11,11 @@
 ## How it's used in production
 
 + In production, `index.html` and `main.tsx` are not used.
-+ A build script imports the `TutorialPage` component from `TutorialPage.tsx`, and renders it to html with the actual tutorial content passed as the `tutorialHTML` prop. This is done for every tutorial.
++ `TutorialPage.tsx` along with everything it imports (components in the `components` directory and `TutorialPage.module.css`) are bundled and the result is placed in the `./dist` directory.
+  ```
+  npx vite build --config ./vite.config.ts
+  ```
++ A build script will import the `TutorialPage` component from the `./dist` directory and continue with the next build steps.
 + More information on this is in `/docs/tutorial_content_architecture.md`.
 
 ---
