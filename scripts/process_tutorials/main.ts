@@ -1,5 +1,5 @@
 import convertMarkdownToHtml from "./convert_markdown_to_html.ts";
-import insertTutorialsInTutorialPage from "processTutorialPage.tsx";
+import insertTutorialsInTutorialPage from "./processTutorialPage.tsx";
 import { execSync } from "child_process";
 import * as path from "path";
 import * as fs from "fs";
@@ -10,7 +10,7 @@ import * as fs from "fs";
  */
 const repoRoot: string = execSync("git rev-parse --show-toplevel", { encoding: "utf-8" }).trim();
 const tempDir = path.join(repoRoot, "temp");
-fs.mkdirSync(tempDir);
+// fs.mkdirSync(tempDir);
 
 const tutorialContentDir: string = path.join(tempDir, "tutorials");
 execSync(
@@ -24,7 +24,6 @@ convertMarkdownToHtml(tutorialContentDir);
  * Overwrites the initial tutorial files after processing all of them successfully.
  */
 insertTutorialsInTutorialPage(tutorialContentDir);
-
 
 
 // Cleanup.
