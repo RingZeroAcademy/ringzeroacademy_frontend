@@ -4,9 +4,10 @@
  *   - Overwrite the original html file with the rendered html content.
  */
 
+import { getFilesWithExtension } from "./utils.ts";
 import { renderToString } from "react-dom/server";
-import React from "react"; // To avoid "ReferenceError: React is not defined".
 import { execSync } from "child_process";
+import React from "react"; // To avoid "ReferenceError: React is not defined".
 
 /* Bundle the tutorial page using vite.
  * Everything in the 'TutorialPage' directory is bundled into javascript and css.
@@ -26,5 +27,10 @@ execSync(
 );
 import TutorialPage from "../../temp/TutorialPage.js";
 
-const output = renderToString(<TutorialPage tutorialHTML="Hello World" />);
-console.log(output);
+// const tutorialPageHTMLString = renderToString(<TutorialPage tutorialHTML="Hello World" />);
+
+export default function insertTutorialsInTutorialPage(tutorialContentDir) {
+    const tutorialFiles = getFilesWithExtension(tutorialContentDir, ".html");
+    console.log();
+    console.log(tutorialFiles);
+}
