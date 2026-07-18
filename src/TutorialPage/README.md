@@ -15,6 +15,7 @@
   ```
   npx vite build --config ./vite.config.ts
   ```
+  This command will be automatically executed by a build script. It shouldn't be run manually.
 + A build script will import the `TutorialPage` component from the `./dist` directory and continue with the next build steps.
 + More information on this is in `/docs/tutorial_content_architecture.md`.
 
