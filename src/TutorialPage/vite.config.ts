@@ -11,7 +11,8 @@ export default defineConfig({
       fileName: () => "TutorialPage.js",
     },
 
-    outDir: "dist",
+    // 'temp' directory in the repository root.
+    outDir: "../../temp",
 
     cssCodeSplit: false,
 
