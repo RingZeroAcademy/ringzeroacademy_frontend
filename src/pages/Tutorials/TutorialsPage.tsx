@@ -1,9 +1,8 @@
 import Header from "./components/Header";
-import TutorialContent from "./components/TutorialContent";
 
-export default function Tutorials() {
+export default function TutorialsPage({ tutorialContent: string }) {
     return <>
         <Header/>
-        <TutorialContent/>
+        <div dangerouslySetInnerHTML={{ __html: tutorialContent }} />
     </>
 }
